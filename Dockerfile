@@ -8,13 +8,16 @@ ENV CHALL_PATH=/chall/challenge.sh
 
 # Install container setup dependencies
 RUN apt-get update && \
-    apt-get install -y socat openssh-server coreutils bash
+    apt-get install -y socat openssh-server coreutils bash sudo
 
 # Create SSH users and set passwords, and change login shell to bash
 RUN useradd -m user && echo "user:password" | chpasswd
 RUN useradd -m admin && echo "admin:password" | chpasswd
 RUN chsh -s /bin/bash user && \
     chsh -s /bin/bash admin
+RUN usermod -aG sudo user
+RUN usermod -aG sudo admin
+RUN echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/user && chmod 440 /etc/sudoers.d/user
 
 # Configure SSH
 RUN mkdir /var/run/sshd
