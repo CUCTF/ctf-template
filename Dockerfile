@@ -1,7 +1,3 @@
-#FROM pwn.red/jail
-
-#COPY --from=ubuntu@sha256:dc17125eaac / /srv
-
 FROM ubuntu@sha256:dc17125eaac86538c57da886e494a34489122fb6a3ebb6411153d742594c2ddc
 
 ENV DEBIAN_FRONTEND=noninteractive
