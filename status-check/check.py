@@ -21,13 +21,6 @@ conn = remote(ip, port)
 
 conn.recvuntil(b'Enter input: ')
 
-# Read the prompt
-#prompt = conn.recvline().decode().strip()
-#if prompt != "Enter input:":
-#    print(f"Unexpected prompt: {prompt}")
-#    conn.close()
-#    sys.exit(1)
-#
 # Send the random string
 conn.sendline(rand_bytes)
 
